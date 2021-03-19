@@ -1,20 +1,20 @@
 pragma solidity =0.6.6;
 
-import '@uniswap/lib/contracts/libraries/TransferHelper.sol';
+import '@fastswaplib/contracts/utils/TransferHelper.sol';
 
-import './interfaces/IUniswapV2Migrator.sol';
+import './interfaces/IFastswapMigrator.sol';
 import './interfaces/V1/IUniswapV1Factory.sol';
 import './interfaces/V1/IUniswapV1Exchange.sol';
-import './interfaces/IUniswapV2Router01.sol';
+import './interfaces/IFastswapRouter01.sol';
 import './interfaces/IERC20.sol';
 
-contract UniswapV2Migrator is IUniswapV2Migrator {
+contract FastswapMigrator is IFastswapMigrator {
     IUniswapV1Factory immutable factoryV1;
-    IUniswapV2Router01 immutable router;
+    IFastswapRouter01 immutable router;
 
     constructor(address _factoryV1, address _router) public {
         factoryV1 = IUniswapV1Factory(_factoryV1);
-        router = IUniswapV2Router01(_router);
+        router = IFastswapRouter01(_router);
     }
 
     // needs to accept ETH from any v1 exchange and the router. ideally this could be enforced, as in the router,
@@ -43,7 +43,7 @@ contract UniswapV2Migrator is IUniswapV2Migrator {
             TransferHelper.safeTransfer(token, msg.sender, amountTokenV1 - amountTokenV2);
         } else if (amountETHV1 > amountETHV2) {
             // addLiquidityETH guarantees that all of amountETHV1 or amountTokenV1 will be used, hence this else is safe
-            TransferHelper.safeTransferETH(msg.sender, amountETHV1 - amountETHV2);
+            TransferHelper.safeTransferBNB(msg.sender, amountETHV1 - amountETHV2);
         }
     }
 }
