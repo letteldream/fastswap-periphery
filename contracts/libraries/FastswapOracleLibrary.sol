@@ -1,7 +1,7 @@
 pragma solidity >=0.5.0;
 
-import '@fastswapcore/contracts/interfaces/IFastswapPair.sol';
-import '@fastswaplib/contracts/utils/FixedPoint.sol';
+import 'fastswapcore/contracts/interfaces/IFastswapPair.sol';
+import 'fastswaplib/contracts/utils/FixedPoint.sol';
 
 // library with helper methods for oracles that are concerned with computing average prices
 library FastswapOracleLibrary {

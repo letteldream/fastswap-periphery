@@ -1,6 +1,6 @@
 pragma solidity >=0.5.0;
 
-import '@fastswapcore/contracts/interfaces/IFastswapPair.sol';
+import 'fastswapcore/contracts/interfaces/IFastswapPair.sol';
 import "./SafeMath.sol";
 
 library FastswapLibrary {
@@ -20,7 +20,7 @@ library FastswapLibrary {
                 hex'ff',
                 factory,
                 keccak256(abi.encodePacked(token0, token1)),
-                hex'e1e560c4e3994aca2a76e766bc93bc9e10b34aafea64b59d406823f5daf24ec8' // init code hash
+                hex'6ba45ffdbc5955062c10bf8338ed95d4a1872ee259eb9712e08631bb451d19f0' // init code hash
             ))));
     }
 
