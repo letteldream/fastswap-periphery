@@ -26,6 +26,10 @@ module.exports = function (deployer, network) {
       console.log('factory:', await b.factory.call());
       console.log('WETH:', await b.WETH.call());
     } else if (network === 'bsc') {
+      const WBNBAddress = '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c';
+      const b = await deployer.deploy(FastswapRouter02, process.env.FASTSWAP_FACTORY_MAINNET, WBNBAddress, { from: process.env.DEPLOYER_ACCOUNT });
+      console.log('factory:', await b.factory.call());
+      console.log('WETH:', await b.WETH.call());
     } else {
       console.error(`Unsupported network: ${network}`);
     }
